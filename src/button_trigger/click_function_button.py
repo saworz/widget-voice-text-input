@@ -1,13 +1,16 @@
 from src.run_settings.base_logger import logger
 from src.threads_handling.threads_handler import ThreadsManager
 from src.voice_record.voice_input import record_microphone
+from src.run_settings.data_parsing import opt
 from pynput.mouse import Listener
 from threading import Thread
 
 
 def click_function_button(x, y, button, pressed) -> bool:
     """Handles function button click"""
-    fn_button = 'Button.button9'
+
+    fn_button = opt.button
+
     if ThreadsManager.stop_thread_listening.is_set():
         return False
 
