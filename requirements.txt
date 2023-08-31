@@ -3,3 +3,6 @@ PyAutoGUI~=0.9.54
 sounddevice~=0.4.6
 pynput~=1.7.6
 setuptools~=65.5.1
+torch~=2.0.1
+numpy~=1.25.2
+pydub~=0.25.1

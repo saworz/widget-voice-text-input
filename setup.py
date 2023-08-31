@@ -8,8 +8,8 @@ with open(Path(BASE_DIR, "requirements.txt")) as file:
 setup(
     name='src',
     packages=find_packages(),
-    version='0.1.0',
-    description='desc',
+    version='1.0',
+    description='Voice transcription',
     author='Michal',
     install_requires=[required_packages]
 )
