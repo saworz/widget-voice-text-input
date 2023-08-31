@@ -1,41 +1,54 @@
-project_name
+Voice input widget
 ==============================
 
-A short description of the project.
+Application that enables pseudo-real-time voice inputting in any text field. To improve performance and lower memory and gpu requirements app uses Faster Whisper model which is Whisper model rewritten in C++. Pressing the button (default one of the function buttons on the mouse - configurable) starts recording from audio device (default audio device for the computer - configurable). Audio is recorded and transcripted while the button is pressed. For better accuracy app prints one sentence back, what allows to keep the correct context. Every time the sentence is printed the initial part of audio becomes unnecessary, so it's deleted according to end of sentence time stamps.
+
 
 Project Organization
 ------------
 
-	├── README.md          <- The top-level README for developers using this project.
+	├── README.md          			<- The top-level README for developers using this project.
 	│
-	├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-	│                         generated with `pip freeze > requirements.txt`
+	├── requirements.txt   			<- The requirements file for reproducing the analysis environment, e.g.
+	│                         		generated with `pip freeze > requirements.txt`
 	│
-	├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
+	├── setup.py           			<- makes project pip installable (pip install -e .) so src can be imported
 	│
-	├── Animals_classification_VGG16                <- Source code for use in this project.
-	│   ├── __init__.py    <- Makes src a Python module
+	├── src                			<- Source code for use in this project.
+	│   ├── __init__.py    			<- Makes src a Python module
 	│   │
-	│   ├── data           <- Scripts to handle data
-	│   │   └── extract_dataset.py <- Unzips dataset
-	│   │   └── get_images.py      <- Gets list of all .jpeg, .jpg or .png files in dir
-	│   │   └── parse_data.py      <- Data parser
-	│   │   └── split_folders.py   <- Splits data into training and validation dirs
+	│   ├── audio_file_functions		<- Scripts handle audio recording
+	│   │   └── __init__.py    		<- Makes audio_file_functions a Python module
+	│   │   └── audio_setup.py		<- Gets audio devices ids and audio parameters
+	│   │   └── cutting_audio.py		<- Used to cut unnecessary audio that has already been trascripted
+	│   │   └── read_audio.py		<- Read data from .wav file
+	│   │	└── save_audio.py		<- Save data as .wav file
 	│   │
+	│   ├── button_trigger			<- Handling recording trigger
+	│   │   └── __init__.py    		<- Makes button_trigger a Python module
+	│   │   └── click_function_button .py	<- Starting and stopping recording
 	│   │
-	│   ├── features       <- Scripts to turn raw data into features for modeling
-	│   │   └── handle_input.py    <- Used to choose between training and loading model
-	│   │   └── image_folder.py    <- Custom ImageFolder class for data validation
-	│   │   └── predict_custom_image.py  <- Used to validate model on a custom data
+	│   ├── model        			<- Script to load model
+	│   │   │── __init__.py    		<- Makes model a Python module
+	│   │   └── model_loading.py		<- Model loading
 	│   │
+	│   ├── run_settings			<- App settings
+	│   │   └── __init__.py    		<- Makes run_settings a Python module
+	│   │   └── base_logger.py		<- Logger config
+	│   │   └── data_parsing.py		<- Data parser config
 	│   │
-	│   ├── model        <- Scripts to train/load/save model
-	│   │   │── create_model.py    <- Initialize new model                
-	│   │   ├── load_model.py      <- Load existing weights to the model
-	│   │   └── save_model.py      <- Save trained model's weights to file
-	│   │   └── training.py        <- Training pipeline
-	│   │
-	└── tox.ini            <- tox file with settings for running tox
+	│   ├── threads_handling		<- Handles threads
+	│   │   └── __init__.py    		<- Makes threads_handling a Python module
+	│   │   └── threads_handler.py		<- Threads and events manager
+	│   │   	
+	│   ├── voice_record			<- Voice recording
+	│   │   └── __init__.py    		<- Makes voice_record a Python module
+	│   │   └── voice_input.py		<- Handles audio recording
+	│   │   	
+	│   └── voice_to_text			<- Audio transcription
+	│      └── __init__.py    		<- Makes voice_to_text a Python module
+	│      └── voice_transcriptions.py	<- Creating text from audio
+
 
 
 --------
