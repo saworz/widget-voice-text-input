@@ -13,19 +13,18 @@ def click_function_button(x, y, button, pressed) -> bool:
 
     if str(button) == fn_button:
         if pressed:
-            logger.debug("Starting recording")
+            logger.info("Starting recording")
             ThreadsManager.stop_thread_recording.clear()
             ThreadsManager.stop_thread_transcription.clear()
             Thread(target=record_microphone).start()
             return True
 
-        logger.debug("Stopping recording...")
+        logger.info("Stopping recording")
         ThreadsManager.stop_thread_recording.set()
         return False
 
 
 def listen_thread() -> None:
-    # while not ThreadsManager.stop_thread_listening.is_set():
     while True:
         with Listener(on_click=click_function_button) as listener:
             listener.join()

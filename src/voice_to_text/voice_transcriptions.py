@@ -4,11 +4,12 @@ from src.threads_handling.threads_handler import ThreadsManager
 from src.model.model_loading import load_model
 import pyautogui
 import re
+import numpy as np
 
 model = load_model()
 
 
-def get_sentences(segments):
+def get_sentences(segments: iter) -> tuple[list[str], list[float]]:
     END_OF_SENTENCE_CHAR = ['!', '...', '.', '?']
     sentences = []
     new_sentence_timestamps = []
@@ -17,7 +18,6 @@ def get_sentences(segments):
 
     for segment in segments:
         for word in segment.words:
-            # print("[%.2fs -> %.2fs] %s" % (word.start, word.end, word.word))
             for delimiter in END_OF_SENTENCE_CHAR:
                 if delimiter in word.word:
                     new_sentence_timestamps.append(word.end)
@@ -38,7 +38,7 @@ def get_sentences(segments):
     return sentences, new_sentence_timestamps
 
 
-def transcribe(data):
+def transcribe(data: np.ndarray) -> None:
     segments, _ = model.transcribe(audio=data, language='en', word_timestamps=True)
     sentences, new_sentence_times = get_sentences(segments)
 
@@ -46,14 +46,13 @@ def transcribe(data):
         cut_range = len(sentences) - 1
         audio_file_cutting(new_sentence_times, cut_range)
         sentences_to_print = sentences[:cut_range]
-        # print(f"final result: {sentences_to_print}")
 
         for sentence in sentences_to_print:
             pyautogui.typewrite(sentence)
             pyautogui.typewrite(' ')
 
 
-def transcribe_leftover_audio(data):
+def transcribe_leftover_audio(data: np.ndarray) -> None:
     segments, _ = model.transcribe(audio=data, language='en', word_timestamps=True)
     final_text = []
 
@@ -62,11 +61,10 @@ def transcribe_leftover_audio(data):
             final_text.append(word.word)
 
     final_text = ''.join(final_text)[1:]
-    # print(f"""final result: ['{final_text}']""")
     pyautogui.typewrite(final_text)
 
 
-def run_transcription():
+def run_transcription() -> None:
     while True:
         if ThreadsManager.stop_thread_transcription.is_set():
             transcribe_leftover_audio(get_data_from_audio_file())

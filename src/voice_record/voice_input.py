@@ -6,7 +6,7 @@ from threading import Thread
 import pyaudio
 
 
-def handle_data_stream(stream):
+def handle_data_stream(stream) -> None:
 
     for i in range(0, int(audio_params["FRAME_RATE"] / audio_params["CHUNK"] * audio_params["RECORD_SECONDS"])):
         data = stream.read(audio_params["CHUNK"])
