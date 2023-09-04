@@ -43,11 +43,7 @@ Parsing arguments
 
 Project can be run with arguments:
 
---model -> string: size of the model. type 
-
-```bash
-voice_widget --help
-```
+--model -> string: size of the model. type `voice_widget --help`
 
 to see possible sizes and default values.
 
@@ -58,7 +54,6 @@ to see possible sizes and default values.
 --button -> string: button used to control voice recording.
 
 Sample run command: 
-
 ```bash
 voice_widget --model small.en --audio 9 --gpu True --button button9
 ```
@@ -69,14 +64,17 @@ How to choose function button?
 
 Run a command to open Event Window then press desired button and read its name from terminal
 
-:Check Events: 
+Check Events: 
 ```bash
 xev
 ```
 
-:Sample output: `ButtonRelease event, serial 37, synthetic NO, window 0x2c00001,
+:Sample output: 
+```bash
+ButtonRelease event, serial 37, synthetic NO, window 0x2c00001,
     root 0x910, subw 0x0, time 47100795, (122,110), root:(172,197),
-    state 0x10, button 9, same_screen YES`
+    state 0x10, button 9, same_screen YES
+```
 
 So we can use this button by passing argument --button button9
 
