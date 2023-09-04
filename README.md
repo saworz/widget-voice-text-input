@@ -43,9 +43,7 @@ Parsing arguments
 
 Project can be run with arguments:
 
---model -> string: size of the model. type `voice_widget --help`
-
-to see possible sizes and default values.
+--model -> string: size of the model. type `voice_widget --help` to see possible sizes and default values.
 
 --audio -> int: audio device ID. Indexes can be checked by running `show_audio_devices.py` script.
 
@@ -53,6 +51,7 @@ to see possible sizes and default values.
 
 --button -> string: button used to control voice recording.
 
+Without parsing arguments script will run with default values saved in config.ini. Parsed arguments overwrite config file.
 Sample run command: 
 ```bash
 voice_widget --model small.en --audio 9 --gpu True --button button9
