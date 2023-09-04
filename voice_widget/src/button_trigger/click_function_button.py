@@ -9,7 +9,7 @@ from threading import Thread
 def click_function_button(x, y, button, pressed) -> bool:
     """Handles function button click"""
 
-    fn_button = opt.button
+    fn_button = "Button." + opt.button
 
     if ThreadsManager.stop_thread_listening.is_set():
         return False

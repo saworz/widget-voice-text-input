@@ -15,6 +15,8 @@ Run a command to open Event Window then press desired button and read its name f
     root 0x910, subw 0x0, time 47100795, (122,110), root:(172,197),
     state 0x10, button 9, same_screen YES`
 
+So we can use this button by passing argument --button "button9"
+
 
 How to run the code?
 ====================
@@ -37,15 +39,15 @@ Project can be run with arguments:
 
 --audio -> int: audio device ID. Indexes can be checked by running `show_audio_devices.py` script.
 
---gpu -> bool: True for gpu, False for cpu.
+--gpu -> bool: True for gpu (if cuda is available), False for cpu.
 
 --button -> string: button used to control voice recording.
 
-Sample run command: `voice_widget --model "small.en" --audio 9 --device "gpu" --button "Button.button9"`
+Sample run command: `voice_widget --model "small.en" --audio 9 --gpu True --button "button9"`
 
 
 Project Organization
-------------
+====================
 
      ├── setup.py           			<- makes project pip installable (pip install -e .) so src can be imported
      │

@@ -6,10 +6,15 @@ from faster_whisper import WhisperModel
 
 def load_model() -> WhisperModel:
     if opt.device:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        if torch.cuda.is_available():
+            device = "cuda"
+        else:
+            device = "cpu"
+            logger.warning("torch cuda not available, using cpu")
     else:
         device = "cpu"
-    logger.info(f"Loading model...")
+
+    logger.info("Loading model...")
     model = WhisperModel(opt.model, device=device, compute_type="int8")
     logger.info(f"Model ---{opt.model}--- loaded on ---{device}---")
     return model
