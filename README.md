@@ -25,7 +25,7 @@ How to run the code?
 
 :Activate env: `source /path/to/new/virtual/environment/bin/activate`
 
-:Install requirements: `pip install .`
+:Install requirements: `python3 setup.py install`
 
 :Run script: `voice_widget`
 

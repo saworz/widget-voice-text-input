@@ -1,6 +1,7 @@
 #Virtual environment
 .venv
 venv
+.venv_pycharm
 
 #Models
 models/

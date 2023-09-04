@@ -5,7 +5,7 @@ from faster_whisper import WhisperModel
 
 
 def load_model() -> WhisperModel:
-    if opt.device:
+    if opt.gpu:
         if torch.cuda.is_available():
             device = "cuda"
         else:
