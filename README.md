@@ -4,34 +4,38 @@ Voice input widget
 Application that enables pseudo-real-time voice inputting in any text field. To improve performance and lower memory and gpu requirements app uses Faster Whisper model which is Whisper model rewritten in C++. Pressing the button (default one of the function buttons on the mouse - configurable) starts recording from audio device (default audio device for the computer - configurable). Audio is recorded and transcripted while the button is pressed. For better accuracy app prints one sentence back, what allows to keep the correct context. Every time the sentence is printed the initial part of audio becomes unnecessary, so it's deleted according to end of sentence time stamps.
 
 
-How to choose function button?
-====================
-
-Run a command to open Event Window then press desired button and read its name from terminal
-
-:Check Events: `xev`
-
-:Sample output: `ButtonRelease event, serial 37, synthetic NO, window 0x2c00001,
-    root 0x910, subw 0x0, time 47100795, (122,110), root:(172,197),
-    state 0x10, button 9, same_screen YES`
-
-So we can use this button by passing argument --button "button9"
-
-
 How to run the code?
 ====================
 
-:Clone repo: `git clone https://github.com/saworz/widget-voice-text-input.git`
+1) Clone repo: 
+```bash
+git clone https://github.com/saworz/widget-voice-text-input.git
+```
 
-:Change dir: `cd widget-voice-text-input`
+2) Change dir: 
+```bash
+cd widget-voice-text-input
+```
 
-:Create env: `python3 -m venv /path/to/new/virtual/environment`
+3) Create env: 
+```bash
+python3 -m venv /path/to/new/virtual/environment
+```
 
-:Activate env: `source /path/to/new/virtual/environment/bin/activate`
+4) Activate env: 
+```bash
+source /path/to/new/virtual/environment/bin/activate
+```
 
-:Install requirements: `python3 setup.py install`
+5) Install requirements: 
+```bash
+python3 setup.py install
+```
 
-:Run script: `voice_widget`
+6) Run script: 
+```bash
+voice_widget
+```
 
 
 Parsing arguments
@@ -39,7 +43,13 @@ Parsing arguments
 
 Project can be run with arguments:
 
---model -> string: size of the model. type `voice_widget --help` to see possible sizes and default values.
+--model -> string: size of the model. type 
+
+```bash
+voice_widget --help
+```
+
+to see possible sizes and default values.
 
 --audio -> int: audio device ID. Indexes can be checked by running `show_audio_devices.py` script.
 
@@ -47,7 +57,28 @@ Project can be run with arguments:
 
 --button -> string: button used to control voice recording.
 
-Sample run command: `voice_widget --model "small.en" --audio 9 --gpu True --button "button9"`
+Sample run command: 
+
+```bash
+voice_widget --model small.en --audio 9 --gpu True --button button9
+```
+
+
+How to choose function button?
+====================
+
+Run a command to open Event Window then press desired button and read its name from terminal
+
+:Check Events: 
+```bash
+xev
+```
+
+:Sample output: `ButtonRelease event, serial 37, synthetic NO, window 0x2c00001,
+    root 0x910, subw 0x0, time 47100795, (122,110), root:(172,197),
+    state 0x10, button 9, same_screen YES`
+
+So we can use this button by passing argument --button button9
 
 
 Project Organization
