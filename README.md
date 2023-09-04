@@ -21,6 +21,10 @@ So we can use this button by passing argument --button "button9"
 How to run the code?
 ====================
 
+:Clone repo: `git clone https://github.com/saworz/widget-voice-text-input.git`
+
+:Change dir: `cd widget-voice-text-input`
+
 :Create env: `python3 -m venv /path/to/new/virtual/environment`
 
 :Activate env: `source /path/to/new/virtual/environment/bin/activate`
