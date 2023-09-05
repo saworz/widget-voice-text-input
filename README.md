@@ -1,44 +1,60 @@
-Voice input widget
-==============================
+Readme contents:
+====================
+1) About voice input widget
+2) How to run the code?
+3) Faster whipser
+4) Parsing arguments
+5) How to choose the function button
+6) CPU/GPU usage
+7) Project organization
+
+
+1\. About voice input widget
+====================
 
 Application that enables pseudo-real-time voice inputting in any text field. To improve performance and lower memory and gpu requirements app uses Faster Whisper model which is Whisper model rewritten in C++. Pressing the button (default one of the function buttons on the mouse - configurable) starts recording from audio device (default audio device for the computer - configurable). Audio is recorded and transcripted while the button is pressed. For better accuracy app prints one sentence back, what allows to keep the correct context. Every time the sentence is printed the initial part of audio becomes unnecessary, so it's deleted according to end of sentence time stamps.
 
 
-How to run the code?
+2\. How to run the code?
 ====================
 
-1) Clone repo: 
+2.1) Clone repo: 
 ```bash
 git clone https://github.com/saworz/widget-voice-text-input.git
 ```
 
-2) Change dir: 
+2.2) Change dir: 
 ```bash
 cd widget-voice-text-input
 ```
 
-3) Create env: 
+2.3) Create env: 
 ```bash
 python3 -m venv /path/to/new/virtual/environment
 ```
 
-4) Activate env: 
+2.4) Activate env: 
 ```bash
 source /path/to/new/virtual/environment/bin/activate
 ```
 
-5) Install requirements: 
+2.5) Install requirements: 
 ```bash
 python3 setup.py install
 ```
 
-6) Run script: 
+2.6) Run script: 
 ```bash
 voice_widget
 ```
 
+3\. Faster whisper
+====================
+For GPU support please refer to Faster Whisper's Github, cuBLAS 11.x and cuDNN 8.x are required.
+https://github.com/guillaumekln/faster-whisper
 
-Parsing arguments
+
+4\. Parsing arguments
 ====================
 
 Project can be run with arguments:
@@ -58,7 +74,7 @@ voice_widget --model small.en --audio 9 --gpu True --button button9
 ```
 
 
-How to choose function button?
+5\. How to choose the function button?
 ====================
 
 Run a command to open Event Window then press desired button and read its name from terminal
@@ -78,7 +94,16 @@ ButtonRelease event, serial 37, synthetic NO, window 0x2c00001,
 So we can use this button by passing argument --button button9
 
 
-Project Organization
+6\. CPU/GPU usage
+====================
+
+Script in idle state (waiting for input) takes about ~320MB of GPU memory and uses negligible CPU. 
+![img.png](idle_gpu_cpu_usage.png)
+
+While busy (recording and translating) GPU peaks at around ~600MB and up to 2 CPU cores.
+![img.png](busy_gpu_cpu_usage.png)
+
+7\. Project Organization
 ====================
 
      ├── setup.py           			<- makes project pip installable (pip install -e .) so src can be imported
