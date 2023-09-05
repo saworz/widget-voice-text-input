@@ -15,7 +15,7 @@ Readme contents:
 Application that enables pseudo-real-time voice inputting in any text field. To improve performance and lower memory and gpu requirements app uses Faster Whisper model which is Whisper model rewritten in C++. Pressing the button (default one of the function buttons on the mouse - configurable) starts recording from audio device (default audio device for the computer - configurable). Audio is recorded and transcripted while the button is pressed. For better accuracy app prints one sentence back, what allows to keep the correct context. Every time the sentence is printed the initial part of audio becomes unnecessary, so it's deleted according to end of sentence time stamps.
 
 
-https://github.com/saworz/widget-voice-text-input/assets/114502781/5d30a8da-f99f-4947-ad5b-814cfea639c3
+https://github.com/saworz/widget-voice-text-input/assets/114502781/dc2ee304-ca9f-42cf-baf0-f818ef01ea1b
 
 
 2\. How to run the code?
